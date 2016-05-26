@@ -1,8 +1,10 @@
+# import eulerutils as eu
 import itertools
 
 
-# The point of this problem is to find "optimum" special sum sets.  The "optimum" is the
-# set that meets all the criteria AND the sum of the elements is the minimum.
+# Unlike for 103 where the point was to find the "optimum" special sum set, the point here
+# is to determine whether a each set in a list of sets is a special sum set
+# (i.e. meets all the conditions), optimal or not
 
 def powerset(iterable):
     "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
@@ -54,13 +56,16 @@ def special_sum_set(n, middle_val_of_prev_sss, highest_val_of_prev_sss, prev_opt
     for possible_sss in itertools.combinations(possible_vals, n):
         lowest_found = test_special_sum_set(possible_sss, lowest_found)
 
+file = "p105_sets.txt"
 
-# n = 4 optimum special set candidate found (3, 5, 6, 7) with len 21
-# n = 5 optimum special set candidate found (6, 9, 11, 12, 13) with len 51
-# n = 6 optimum special set candidate found (11, 17, 20, 22, 23, 24) with len 117
-# n = 7 optimum special set candidate found (11, 18, 19, 20, 22, 25) with len 115
-# n = 8 optimum special set candidate found (20, 31, 38, 39, 40, 42, 45) with len 255
-special_sum_set(4, 3, 4, 9)
-special_sum_set(5, 6, 7, 21)
-special_sum_set(6, 11, 13, 51)
-special_sum_set(7, 20, 25, 115)
+s = 0
+total_sum = 0
+for line in list(open(file)):
+    line = line.strip()
+    set_list = set(map(int, line.split(",")))
+    set_sum = sum(set_list)
+    if test_special_sum_set(set_list, set_sum +1 ) == set_sum:
+        print("{} is special sum set".format(set_list))
+        total_sum += set_sum
+
+print("Total is {}".format(total_sum))
