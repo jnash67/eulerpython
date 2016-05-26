@@ -1,6 +1,5 @@
-# import eulerutils as eu
+import eulerutils as eu
 import itertools
-
 
 # Here we don't need to have an actual special sum set.  We need a set of size n where all
 # values are strictly increasing.  We can just assume that all subsets of unequal size
@@ -12,40 +11,44 @@ import itertools
 
 # For a given n, we want to iterate through all pairs of disjoint subsets of equal size 1..n-1
 
-def is_empty(any_structure):
-    if any_structure:
-        return False
-    else:
-        return True
-
-
-def powerset(iterable):
-    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
-    s = list(iterable)
-    return itertools.chain.from_iterable(itertools.combinations(s, r) for r in range(len(s) + 1))
-
-
-def subsets_of_size(iterable, n):
-    s = list(iterable)
-    return itertools.chain.from_iterable(itertools.combinations(s, n))
-
 
 def all_disjoint_pairs_of_equal_size(strictly_increasing_set):
-    for r in range(1, len(strictly_increasing_set) + 1):
-        for pair in itertools.combinations(subsets_of_size(strictly_increasing_set, r), 2):
-            p1 = pair[0]
-            p2 = pair[1]
-            if is_empty(p1 - p2):
-                print("disjoint sets {} {}".format(p1, p2))
-
+    # we know all pairs of size 1 are disjoint since the set is strictly increasing and none of these requiring testing
+    set_size = len(strictly_increasing_set)
+    possiblePairs = int(eu.number.choose(set_size, 2))
+    possibleDisjointPairs = possiblePairs
+    testingRequired = 0
+    for r in range(2, set_size//2+1):
+        subsets = set(eu.subsets.subsets_of_size(strictly_increasing_set, r))
+        possiblePairs += int(eu.number.choose(len(subsets), 2))
+        for pair in itertools.combinations(subsets,2):
+            p1 = list(pair[0])
+            p2 = list(pair[1])
+            if frozenset(pair[0]).isdisjoint(frozenset(pair[1])):
+                possibleDisjointPairs+=1
+                # if every corresponding item is later in one than in the other then
+                # we don't have to do comparisons.
+                numLater = 0
+                numEarlier = 0
+                for i in range(0,r):
+                    i1 = p1[i]
+                    i2 = p2[i]
+                    if (i1 > i2) :
+                        numLater += 1
+                    else:
+                        numEarlier +=1
+                if not(numLater == 0 or numEarlier == 0):
+                    #print("disjoint set that needs to be counted {} {}".format(p1, p2))
+                    testingRequired+=1
+    # Note: My count of equal pairs is different than the problem statement count of possible subsets because
+    # these include comparisons of unequal sized pairs as well and sum just disjoint subsets.
+    print("{} Subsets require testing out of total {} equal joint and disjoint pairs. A total of {} were disjoint".format(testingRequired, possiblePairs, possibleDisjointPairs))
 
 def count_comparisons(n):
-    all_disjoint_pairs_of_equal_size(range(1, n + 1))
+    strictly_increasing_set = set(range(1,n+1))
+    all_disjoint_pairs_of_equal_size(strictly_increasing_set)
 
 
-# n = 4 optimum special set candidate found (3, 5, 6, 7) with len 21
-# n = 5 optimum special set candidate found (6, 9, 11, 12, 13) with len 51
-# n = 6 optimum special set candidate found (11, 17, 20, 22, 23, 24) with len 117
-# n = 7 optimum special set candidate found (11, 18, 19, 20, 22, 25) with len 115
-# n = 8 optimum special set candidate found (20, 31, 38, 39, 40, 42, 45) with len 255
 count_comparisons(4)
+count_comparisons(7)
+count_comparisons(12)

@@ -14,6 +14,7 @@ from . import binary_tree
 from . import graph
 from . import rpn
 from . import rpnconvert
+from . import subsets
 
 
 def dec_to_bin(x):
