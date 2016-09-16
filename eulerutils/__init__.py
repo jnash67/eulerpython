@@ -2,6 +2,7 @@ import math
 import itertools
 from . import number
 from . import primes
+from . import numtheory
 from . import numtext
 from . import collectionutils
 from . import pandigital

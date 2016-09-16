@@ -14,8 +14,7 @@ def egcd(a, b):
         m, n = x-u*q, y-v*q
         b,a, x,y, u,v = a,r, u,v, m,n
     gcd = b
-    #return gcd, x, y
-    return gcd
+    return gcd, x, y
 
 def extendedEuclid(a, b):
     """
@@ -44,8 +43,11 @@ def extendedEuclid(a, b):
               + " = " + str(euclidList[0][0])
     return strExpr
 
-test = [24,78,360,15620,6400,1100,150000]
-#test = [24]
+#test = [24,78,360,15620,6400,1100,150000]
+print("{}".format(extendedEuclid(840,840)))
+gcd,x,y = egcd(840,840);
+print("{} {} {}".format(gcd,x,y))
+test = [24]
 nstart = 2
 nmax = 100
 solutions_to_exceed = 1000
@@ -58,7 +60,8 @@ for n in test:
         if count > solutions_to_exceed:
             break
         for y in range(2*n, n*(n+1)+1):
-            # print("({},{}): {}, ".format(x,y, egcd(x,y)))
+            print("({},{}): {}, ".format(x,y, egcd(x,y)))
+            print("{}".format(extendedEuclid(x,y)))
             if math.gcd(x,y) > 1:
                 xy = x * y
                 if xy % n == 0:
@@ -66,7 +69,7 @@ for n in test:
                     if xy == nx_plus_ny:
                         count+=1
                         y_max = y
-                        print("({},{}) ".format(x, y), end="", flush=True)
+                        print("{},{}".format(x, y))
                         break
                     if xy > nx_plus_ny:
                         break

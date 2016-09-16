@@ -52,6 +52,20 @@ def totients_below_not_in_order(N):
         yield (n, t)
 
 
+def totatives(n):
+    return [k for k in range(1, n) if coprime(k, n)]
+
+
+# another way to calculate totient/phi
+def totient2(n):
+    return len(totatives(n))
+
+
+# Euler totient function is sometimes called phi
+def phi(n):
+    return totient(n)
+
+
 def totient(n):
     if n == 1:
         return 1
@@ -61,6 +75,10 @@ def totient(n):
         k = c[i]
         a *= (i ** k) - (i ** (k - 1))
     return a
+
+
+def omega(n):
+    return len(prime_factors(n))
 
 
 def is_prime(number):
@@ -141,6 +159,34 @@ def gcd(x, y):
     return x
 
 
+def divides(k, n):
+    if n % k == 0:
+        return True
+    else:
+        return False
+
+
+def coprime(k, n):
+    if gcd(k, n) == 1:
+        return True
+    else:
+        return False
+
+
+def slow_divisors(n):
+    return [k for k in range(1, n + 1) if divides(k, n)]
+
+
+# Number of divisors. Also called sigma_0(n). Also called d(n). Different from Ramanujan Tau.
+def tau(n):
+    return sum(1 for i in fast_divisors(n))
+
+
+# sigma(n,0) = tau(n)
+def sigma(n, k=1):
+    return sum(math.pow(i, k) for i in fast_divisors(n))
+
+
 # from https://projecteuler.net/thread=70;page=5
 def prime_factors(n):
     o = n
@@ -177,3 +223,39 @@ def is_pythagorean_triple_primitive(a, b, c):
         elif eu.collectionutils.do_collections_share_an_item(bfactors, cfactors):
             return False
     return True
+
+
+def fast_divisors(n):
+    # get factors and their counts
+    factors = {}
+    nn = n
+    i = 2
+    while i * i <= nn:
+        while nn % i == 0:
+            if not i in factors:
+                factors[i] = 0
+            factors[i] += 1
+            nn //= i
+        i += 1
+    if nn > 1:
+        factors[nn] = 1
+
+    primes = list(factors.keys())
+
+    # generates factors from primes[k:] subset
+    def generate(k):
+        if k == len(primes):
+            yield 1
+        else:
+            rest = generate(k + 1)
+            prime = primes[k]
+            for factor in rest:
+                prime_to_i = 1
+                # prime_to_i iterates prime**i values, i being all possible exponents
+                for _ in range(factors[prime] + 1):
+                    yield factor * prime_to_i
+                    prime_to_i *= prime
+
+    # in python3, `yield from generate(0)` would also work
+    for factor in generate(0):
+        yield factor
