@@ -3,6 +3,7 @@ import sortedcontainers as sc
 import eulerutils as eu
 import collections
 import numpy as np
+import sympy
 
 pF = collections.defaultdict(list)
 primesList = []
@@ -56,16 +57,13 @@ def totatives(n):
     return [k for k in range(1, n) if coprime(k, n)]
 
 
-# another way to calculate totient/phi
-def totient2(n):
-    return len(totatives(n))
-
-
 # Euler totient function is sometimes called phi
 def phi(n):
     return totient(n)
 
 
+# Aka phi
+# another implementation is -> return len(totatives(n))
 def totient(n):
     if n == 1:
         return 1
@@ -78,7 +76,8 @@ def totient(n):
 
 
 def omega(n):
-    return len(prime_factors(n))
+    # return len(prime_factors(n))
+    return eu.numtheory.omega(n)
 
 
 def is_prime(number):
@@ -179,12 +178,13 @@ def slow_divisors(n):
 
 # Number of divisors. Also called sigma_0(n). Also called d(n). Different from Ramanujan Tau.
 def tau(n):
-    return sum(1 for i in fast_divisors(n))
+    return eu.numtheory.sigma_k(n, 0)
 
 
 # sigma(n,0) = tau(n)
 def sigma(n, k=1):
-    return sum(math.pow(i, k) for i in fast_divisors(n))
+    # return sum(math.pow(i, k) for i in fast_divisors(n))
+    return eu.numtheory.sigma_k(n, k)
 
 
 # from https://projecteuler.net/thread=70;page=5

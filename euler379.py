@@ -1,12 +1,13 @@
 import collections
 import math
 import time
-
 import sympy
+import fractions
 
 prime_exponent_dicts = collections.defaultdict(dict)
 mobius_dict = collections.defaultdict(int)
 divisors_dict = collections.defaultdict(list)
+
 
 # In problem 108 and 110 we worked with OEIS A018892, Number of ways to write 1/n as a sum of exactly
 # 2 unit fractions. That page points out that the series is is equivalent to the number of pairs (x,y)
@@ -20,12 +21,18 @@ divisors_dict = collections.defaultdict(list)
 # we are given g(10^6) = 37429395.
 # since g is a summation over sigma_0 which is multiplicative, it too is multiplicative
 
-def a018892(nval):
+def A018892(nval):
     return (sigma_k(int(nval * nval), 0) + 1) // 2
 
 
-def a018892_2(nval):
+def A018892_2(nval):
     return (sigma_0_pow(nval, 2) + 1) // 2
+
+
+# partial sum of A018892
+def A182082(nval):
+    sumsig = fast_sum_of_sigma_0s_for_nsquared(nval)
+    return (sumsig + nval) // 2
 
 
 # sigma_0 aka tau
@@ -74,7 +81,7 @@ def smallest_number_whose_square_is_divisible_by_n(nval):
 def number_of_nonsquare_divisors_of_nsquared(nval):
     s0 = sigma_0_pow(nval, 1)
     s0sq = sigma_0_pow(nval, 2)
-    return s0sq-s0
+    return s0sq - s0
 
 
 def sigma_0_and_sigma_0_squared(nval):
@@ -93,6 +100,7 @@ def sigma_0_and_sigma_0_squared(nval):
         s0mult *= (expval + 1)
         s0sqmult *= (expval * 2 + 1)
     return int(s0mult), int(s0sqmult)
+
 
 # http://oeis.org/A048691
 def sigma_0_nsquared(nval):
@@ -130,7 +138,7 @@ def sigma_0_nsquared(nval):
 
 
 
-# sigma_0(n^p). sigma_0_pow(n,1)=sigma_0(n)=http://oeis.org/A000005
+# sigma_0(n^p). sigma_0_pow(n,1)=sigma_0(n)=tau(n)=tau_2(n) -> http://oeis.org/A000005
 # sigma_0_pow(n,2)=sigma_0(n^2)=http://oeis.org/A048691
 def sigma_0_pow(nval, powval=1):
     if nval == 1:
@@ -163,9 +171,9 @@ def sigma_1(nval):
     return int(psigmult)
 
 
-# sigma_k(n,0)=sigma_0(n)=count of divisors of n A000005
-# sigma_k(n,1)=sigma_1(n)=sum of divisors of n A000203
-# sigma_k(n,2)=sigma_2(n)=sum of squares of divisors of n A001157
+# sigma_k(n,0)=sigma_0(n)=count of divisors of n -> A000005
+# sigma_k(n,1)=sigma_1(n)=sum of divisors of n -> A000203
+# sigma_k(n,2)=sigma_2(n)=sum of squares of divisors of n -> A001157
 def sigma_k(nval, kval=1):
     if nval == 1:
         return 1
@@ -180,16 +188,19 @@ def sigma_k(nval, kval=1):
     return int(sigval)
 
 
+def S(nval, x1val, x2val):
+    lval = 0
+    for xval in range(x1val, x2val + 1):
+        lval += math.floor(nval / xval)
+    return lval
+
+
 # this is summatory of tau. A fast special formula.
 # http://math.stackexchange.com/questions/850135/tau-summatory-function
+# https://oeis.org/A006218
 def sum_of_sigma_0s(nval):
-    sigma_0_sum = 0
     s = math.floor(math.sqrt(nval))
-    for k in range(1, s + 1):
-        sigma_0_sum += math.floor(nval / k)
-    sigma_0_sum *= 2
-    sigma_0_sum -= s * s
-    return sigma_0_sum
+    return int(2 * S(nval, 1, s) - math.pow(s, 2))
 
 
 # http://oeis.org/A061503
@@ -212,6 +223,40 @@ def sum_of_sigma_0s_for_nsquared(nval):
 
 
 # http://oeis.org/A061503
+# algorithm from: https://math.stackexchange.com/questions/133630/divisor-summatory-function-for-squares
+# There's a bug here.  It's off by 1 for n = 10^6 (i.e. 37429394 instead of 37429395) and
+# n = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
+def fast_sum_of_sigma_0s_for_nsquared(nval):
+    sqrtn = math.floor(math.sqrt(nval))
+    lval = 0
+    for a in range(1, sqrtn + 1):
+        if a % 100000 == 0:
+            print("On n {}".format(a))
+        if a in mobius_dict:
+            mob = mobius_dict[a]
+        else:
+            mob = int(sympy.mobius(a))
+            mobius_dict[a] = mob
+        # fast_sum_of_tau_3 is slower for small a's.  As a increases, it speeds up.
+        if mob != 0:
+            lval += mob * fast_sum_of_tau_3(math.floor(nval / math.pow(a, 2)))
+    return int(lval)
+
+
+# http://oeis.org/A061201
+# This is the sum of tau_3(n) aka d_3(n) which is A007425
+def fast_sum_of_tau_3(nval):
+    lval = 0
+    zmax = math.floor(math.pow(nval, fractions.Fraction(1, 3)))
+    for z in range(1, zmax + 1):
+        s = math.floor(math.sqrt(nval / z))
+        lval += 2 * S(math.floor(nval / z), z + 1, s) - math.pow(s, 2) + math.floor(nval / math.pow(z, 2))
+    lval *= 3
+    lval += math.pow(zmax, 3)
+    return int(lval)
+
+
+# http://oeis.org/A061503
 def slow_sum_of_sigma_0s_for_nsquared(nval):
     sigma_0_sum = 0
     for i in range(1, nval + 1):
@@ -223,32 +268,38 @@ def slow_sum_of_sigma_0s_for_nsquared(nval):
 def stats(nval):
     s0 = sigma_0_pow(nval, 1)
     s0sq = sigma_0_pow(nval, 2)
-    s0sq2 = sigma_0_nsquared(nval)
+    # s0sq2 = sigma_0_nsquared(nval)
     print("tau/sigma_0(n) {}: {}".format(nval, s0))
     print("tau^2(n) {}: {}".format(nval, s0sq))
-    print("tau^2(n) using mobius {}: {}".format(nval, s0sq2))
+    # print("tau^2(n) using mobius {}: {}".format(nval, s0sq2))
     print("sum of sigma_0s(n) {}: {}".format(nval, sum_of_sigma_0s(nval)))
-    #print("sum_of_sigma_0s_squared(n) {}: {}".format(math.pow(nval, 2), sum_of_sigma_0s_for_nsquared(nval)))
+    # print("sum_of_sigma_0s_squared(n) {}: {}".format(nval, fast_sum_of_sigma_0s_for_nsquared(nval)))
+    print("sum of A018892(n) {}: {}".format(nval, A182082(nval)))
     print("=================")
 
 
+start_time = time.time()
+for i in range(1, 100 + 1):
+    ans = A182082(i)
+    sig = fast_sum_of_sigma_0s_for_nsquared(i)
+    print("{} {} {}".format(i, sig, ans))
+finish_time = time.time()
+print("Running Time: %.3f seconds" % (finish_time - start_time))
 
 n0 = int(math.pow(10, 4))
 n1 = int(math.pow(10, 6))
 n2 = int(math.pow(10, 12))
+
+start_time = time.time()
+print("sum of A018892(n) {}: {}".format(n2, A182082(n2)))
+finish_time = time.time()
+print("Running Time: %.3f seconds" % (finish_time - start_time))
 
 stats(10)
 stats(n0)
 stats(n1)
 stats(2000000)
 stats(n2)
-
-start_time = time.time()
-for i in range(1, 100 + 1):
-    sig = sigma_0_nsquared(i)
-    print("{} {}".format(i, sig))
-finish_time = time.time()
-print("Running Time: %.3f seconds" % (finish_time - start_time))
 
 # sumtau = 0
 # sumtausq = 0
