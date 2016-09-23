@@ -18,8 +18,8 @@ def is_nine_digit_pandigital(numList):
                 return int(allstr)
     return 0
 
-# pandigital use all digits from 1-9
-# n-digit pandigital makes use of all digits 1 to n
+# pandigital use all str_digits from 1-9
+# n-digit pandigital makes use of all str_digits 1 to n
 def is_n_digit_pandigital(num, n):
     allstr = str(num)
     resultSet = set()

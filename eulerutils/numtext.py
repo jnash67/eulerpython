@@ -3,6 +3,7 @@ def rotate_num(num, d):
     rot = strval[d - 1] + strval[0:d - 1]
     return int(rot)
 
+
 def reverse_num(num):
     strval = str(num)
     revstr = strval[::-1]
@@ -75,7 +76,7 @@ def replace_two_digits(num, posdig1, posdig2, replacewith):
     return int(strval)
 
 
-def replace_three_digits(num, posdig1, posdig2,posdig3, replacewith):
+def replace_three_digits(num, posdig1, posdig2, posdig3, replacewith):
     strlist = list(str(num))
     strrepl = str(replacewith)
     strlist[posdig1] = strrepl

@@ -29,7 +29,7 @@ for strnum in strnums:
 
 min_length = len(orig_unique_digits)
 unique_digits = list(orig_unique_digits)
-print("Unique digits --> {} with length {}".format(orig_unique_digits, min_length))
+print("Unique str_digits --> {} with length {}".format(orig_unique_digits, min_length))
 found = False
 count = 0
 while not found:

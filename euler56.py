@@ -7,6 +7,6 @@ for a in range(1,100):
         sumofdigits = eu.number.sum_digits(r)
         if sumofdigits > maxdigitsum:
             maxdigitsum = sumofdigits
-            print("sum of digits {} results from {}^{} = {}".format(sumofdigits,a,b,r))
+            print("sum of str_digits {} results from {}^{} = {}".format(sumofdigits,a,b,r))
 
 print("The maximum digital sum is {}".format(maxdigitsum))

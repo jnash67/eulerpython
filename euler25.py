@@ -20,6 +20,6 @@ while (n<1000.0):
     ind += 1
     f = fibonacci(ind)
     n = len(str(f))
-    print("Fib {} has {} digits and is {}".format(ind,n, f))
+    print("Fib {} has {} str_digits and is {}".format(ind,n, f))
 
 print(f)

@@ -25,4 +25,4 @@ for a in range(1,101):
     numerator = frac.numerator
     denominator = frac.denominator
     numerator_sum_digits = eu.number.sum_digits(numerator)
-    print("Convergent {} is {}/{} - sum of numerator digits is {}".format(a , numerator, denominator, numerator_sum_digits))
+    print("Convergent {} is {}/{} - sum of numerator str_digits is {}".format(a , numerator, denominator, numerator_sum_digits))

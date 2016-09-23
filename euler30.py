@@ -8,7 +8,7 @@ for i in range(2, 1000000):
     for char in stri:
         sum = sum + int(char)**5
     if (i == sum):
-        print("the fifth power of digits equals {}".format(i))
+        print("the fifth power of str_digits equals {}".format(i))
         allsum = allsum + sum
         count+=1
 

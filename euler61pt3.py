@@ -112,7 +112,7 @@ heptagonals = sc.SortedList()
 octagonals = sc.SortedList()
 
 # NOTE: The second from last digit cannot be zero or else the first digit of the next
-# cycle would be less than 4 digits.
+# cycle would be less than 4 str_digits.
 maxn = 10000
 i = 0
 removed = 0
