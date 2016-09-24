@@ -76,8 +76,8 @@ def choose(n, r):
 
 
 # from: http://stackoverflow.com/questions/5187664/generating-digits-of-square-root-of-2
-# Here is a short version for calculating the square root of an integer a to str_digits of precision.
-# It works by finding the integer square root of a after multiplying by 10 raised to the 2 x str_digits.
+# Here is a short version for calculating the square root of an integer a to digits of precision.
+# It works by finding the integer square root of a after multiplying by 10 raised to the 2 x digits.
 def sqroot(a, digits):
     a *= 10 ** (2 * digits)
     x_prev = 0

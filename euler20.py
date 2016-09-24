@@ -12,4 +12,4 @@ n = 100
 fact = math.factorial(n)
 sum = sum_digits(fact)
 print("The factorial is {}".format(fact))
-print("Sum of str_digits is {}".format(sum))
+print("Sum of digits is {}".format(sum))

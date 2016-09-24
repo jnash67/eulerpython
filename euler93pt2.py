@@ -24,7 +24,7 @@ def last_consecutive(results):
     return maxr
 
 
-# for each combination of str_digits
+# for each combination of digits
 # for each combination of operators with replacement
 # for each addition of sets of parens. an open paren can go before each digit operator pair.  A close paren can
 # go after each digit

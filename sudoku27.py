@@ -50,7 +50,7 @@ def test():
 ################ Parse a Grid ################
 
 def parse_grid(grid):
-    """Convert grid to a dict of possible values, {square: str_digits}, or
+    """Convert grid to a dict of possible values, {square: digits}, or
     return False if a contradiction is detected."""
     ## To start, every square can be any digit; then assign values from the grid.
     values = dict((s, digits) for s in squares)
@@ -184,7 +184,7 @@ def solve_all(grids, name='', showif=0.0):
 
 
 def solved(values):
-    "A puzzle is solved if each unit is a permutation of the str_digits 1 to 9."
+    "A puzzle is solved if each unit is a permutation of the digits 1 to 9."
 
     def unitsolved(unit): return set(values[s] for s in unit) == set(digits)
 

@@ -49,4 +49,4 @@ for i in digitList:
     mult = mult * i
 
 print(digitList)
-print("The mult of the str_digits is {}".format(mult))
+print("The mult of the digits is {}".format(mult))

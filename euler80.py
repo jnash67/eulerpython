@@ -11,7 +11,7 @@ for i in range(1,101):
         sumdig += int(d)
     # if not perfect square then add
     if not(math.sqrt(i) - int(math.sqrt(i)) < epsilon):
-        print("Adding sum of str_digits for {}".format(i))
+        print("Adding sum of digits for {}".format(i))
         sumAllDigits += sumdig
 
-print("Sum of all str_digits is {}".format(sumAllDigits))
+print("Sum of all digits is {}".format(sumAllDigits))

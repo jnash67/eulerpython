@@ -3,14 +3,14 @@ import collections
 
 # find largest pandigital prime
 # let's first see if there's any 9 digit pandigital primes and take the largest of those
-# there are no pandigitals greater than 9 str_digits
+# there are no pandigitals greater than 9 digits
 
 def num_digits(n):
     d = int(math.log10(n))+1
     return d
 
-# pandigital use all str_digits from 1-9
-# n-digit pandigital makes use of all str_digits 1 to n
+# pandigital use all digits from 1-9
+# n-digit pandigital makes use of all digits 1 to n
 def isNDigitPandigital(num, n):
     allstr = str(num)
     resultSet = set()
@@ -70,4 +70,4 @@ for next_prime in get_primes(1):
             print("{} is pandigital prime".format(next_prime))
 
 print(resultsDict)
-print("The largest was {} with {} str_digits".format(largest,noflargest))
+print("The largest was {} with {} digits".format(largest,noflargest))

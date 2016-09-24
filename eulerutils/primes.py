@@ -3,7 +3,10 @@ import sortedcontainers as sc
 import eulerutils as eu
 import collections
 import numpy as np
-import sympy
+from itertools import count
+from itertools import compress
+from itertools import islice
+from itertools import cycle
 
 pF = collections.defaultdict(list)
 primesList = []
@@ -259,3 +262,63 @@ def fast_divisors(n):
     # in python3, `yield from generate(0)` would also work
     for factor in generate(0):
         yield factor
+
+
+def generate_primes_after(number):
+    gen = postponed_sieve()
+    np = next(gen)
+    while np < number:
+        np = next(gen)
+    yield np
+    while True:
+        np = next(gen)
+        yield np
+
+
+# from https://stackoverflow.com/questions/2211990/how-to-implement-an-efficient-infinite-generator-of-prime-numbers-in-python
+def postponed_sieve():                   # postponed sieve, by Will Ness
+    yield 2; yield 3; yield 5; yield 7;  # original code David Eppstein,
+    sieve = {}                           #   Alex Martelli, ActiveState Recipe 2002
+    ps = postponed_sieve()               # a separate base Primes Supply:
+    p = next(ps) and next(ps)            # (3) a Prime to add to dict
+    q = p*p                              # (9) its sQuare
+    for c in count(9,2):                 # the Candidate
+        if c in sieve:               # c's a multiple of some base prime
+            s = sieve.pop(c)         #     i.e. a composite ; or
+        elif c < q:
+             yield c                 # a prime
+             continue
+        else:   # (c==q):            # or the next base prime's square:
+            s=count(q+2*p,2*p)       #    (9+6, by 6 : 15,21,27,33,...)
+            p=next(ps)               #    (5)
+            q=p*p                    #    (25)
+        for m in s:                  # the next multiple
+            if m not in sieve:       # no duplicates
+                break
+        sieve[m] = s
+
+
+# from https://stackoverflow.com/questions/2211990/how-to-implement-an-efficient-infinite-generator-of-prime-numbers-in-python
+# The erat3 function takes advantage of the fact that all primes (except for 2, 3, 5) modulo 30 result to only eight numbers:
+# the ones included in the MODULOS frozenset. Thus, after yielding the initial three primes, we start from 7 and work only
+# with the candidates.
+def erat3( ):
+    D = { 9: 3, 25: 5 }
+    yield 2
+    yield 3
+    yield 5
+    MASK= 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0,
+    MODULOS= frozenset( (1, 7, 11, 13, 17, 19, 23, 29) )
+
+    for q in compress(
+            islice(count(7), 0, None, 2),
+            cycle(MASK)):
+        p = D.pop(q, None)
+        if p is None:
+            D[q*q] = q
+            yield q
+        else:
+            x = q + 2*p
+            while x in D or (x%30) not in MODULOS:
+                x += 2*p
+            D[x] = p

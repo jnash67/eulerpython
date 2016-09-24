@@ -112,7 +112,7 @@ heptagonals = sc.SortedList()
 octagonals = sc.SortedList()
 
 # NOTE: The second from last digit cannot be zero or else the first digit of the next
-# cycle would be less than 4 str_digits.
+# cycle would be less than 4 digits.
 maxn = 10000
 i = 0
 removed = 0
@@ -165,21 +165,21 @@ print("{} were removed".format(removed))
 
 removed = 0
 listOfAll = triangulars, squares, pentagonals, hexagonals, heptagonals, octagonals
-# The last two str_digits of each number in a set must be the first two str_digits in at least two other sets to be
+# The last two digits of each number in a set must be the first two digits in at least two other sets to be
 # worth keeping
 delete_all_numbers_with_last_digits_not_as_first_digits_in_at_least_one_other_set(listOfAll)
 
 print(
-    "There are {} triangulars, {} squares, {} pentagonals, {} hexagonals, {} heptagonals, {} octagonals with last two str_digits not the first two str_digits in at least one other set".
+    "There are {} triangulars, {} squares, {} pentagonals, {} hexagonals, {} heptagonals, {} octagonals with last two digits not the first two digits in at least one other set".
         format(len(triangulars), len(squares), len(pentagonals), len(hexagonals), len(heptagonals), len(octagonals)))
 print("an additional {} were removed".format(removed))
 
-# likewise, the first two str_digits of each number in a set must be the last two str_digits in at least two other sets to be
+# likewise, the first two digits of each number in a set must be the last two digits in at least two other sets to be
 # worth keeping
 removed = 0
 delete_all_numbers_with_first_digits_not_as_last_digits_in_at_least_one_other_set(listOfAll)
 print(
-    "There are {} triangulars, {} squares, {} pentagonals, {} hexagonals, {} heptagonals, {} octagonals with last two str_digits not the first two str_digits in at least one other set".
+    "There are {} triangulars, {} squares, {} pentagonals, {} hexagonals, {} heptagonals, {} octagonals with last two digits not the first two digits in at least one other set".
         format(len(triangulars), len(squares), len(pentagonals), len(hexagonals), len(heptagonals), len(octagonals)))
 print("an additional {} were removed".format(removed))
 count = 0
@@ -249,7 +249,7 @@ for tr in triangulars:
                         setOfEach.add(hp)
                         setOfEach.add(oc)
                         if len(setOfEach) == 6:
-                            # if each number's first two str_digits aren't at least two other numbers last two digit's
+                            # if each number's first two digits aren't at least two other numbers last two digit's
                             # then skip this permutation
                             # skip = False
                             # for n in setOfEach:

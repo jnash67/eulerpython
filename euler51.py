@@ -2,12 +2,12 @@ import eulerutils as eu
 import itertools
 
 """
-Find the smallest prime which, by replacing part of the number (not necessarily adjacent str_digits) with the same digit,
+Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) with the same digit,
 is part of an eight prime value family.
 
 12,345,678
 
-# try replacing 2 of the str_digits, 3 of the str_digits, 4 of the str_digits with the same digit
+# try replacing 2 of the digits, 3 of the digits, 4 of the digits with the same digit
 
 """
 
@@ -69,7 +69,7 @@ for prime in primes:
 
         sortedFamilyList = sorted(familySet)
         if does_family_have_n_primes(sortedFamilyList, 8):
-            print ("we replaced two str_digits {} and {}".format(dig1,dig2))
+            print ("we replaced two digits {} and {}".format(dig1,dig2))
             found = True
             print("A family with 8 primes is {}".format(sortedFamilyList))
             for p in sortedFamilyList:
@@ -90,7 +90,7 @@ for prime in primes:
 
         sortedFamilyList = sorted(familySet)
         if does_family_have_n_primes(sortedFamilyList, 8):
-            print ("we replaced three str_digits {} and {} and {}".format(dig1,dig2,dig3))
+            print ("we replaced three digits {} and {} and {}".format(dig1,dig2,dig3))
             found = True
             print("A family with 8 primes is {}".format(sortedFamilyList))
             for p in sortedFamilyList:
