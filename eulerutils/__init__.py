@@ -53,12 +53,12 @@ def collatz(n):
         yield n
 
 
-# def fibonacci_with_f0equals0(n):
-#     if (n == 0):
+# def fibonacci_with_f0equals0(num):
+#     if (num == 0):
 #         return 0
 #
 #
-#     return 0, fibonacci(n)
+#     return 0, fibonacci(num)
 
 
 def fibonacci(n):

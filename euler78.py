@@ -12,7 +12,7 @@ for p in plist:
     n += 1
 
 # use euler recurrence relation
-#  P(n)=sum_(k=1)^n(-1)^(k+1)[P(n-1/2k(3k-1))+P(n-1/2k(3k+1))]
+#  P(num)=sum_(k=1)^num(-1)^(k+1)[P(num-1/2k(3k-1))+P(num-1/2k(3k+1))]
 while True:
     sum = 0
     for k in range(1, n + 1):

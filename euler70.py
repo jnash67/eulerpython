@@ -6,16 +6,16 @@ import numpy as np
 from fractions import Fraction
 
 
-# totient is the number of relatively prime numbers less than n
-# the cototient is the number of numbers less than OR EQUAL to n that share at least one prime factor
-# n always shares at least one prime factor with itself
+# totient is the number of relatively prime numbers less than num
+# the cototient is the number of numbers less than OR EQUAL to num that share at least one prime factor
+# num always shares at least one prime factor with itself
 # 1 is always a relative prime of any number
-# phi is multiplicative so if m and n are coprime, then φ(mn) = φ(m) φ(n)
+# phi is multiplicative so if m and num are coprime, then φ(mn) = φ(m) φ(num)
 
 numofminratio = 783169
 phiofnumofminratio = 781396
 minratio = numofminratio / phiofnumofminratio
-print("first min n/phi is {} for n {} and phi {}".format(minratio, numofminratio,phiofnumofminratio))
+print("first min num/phi is {} for num {} and phi {}".format(minratio, numofminratio,phiofnumofminratio))
 primeFactorsDict = {}
 size = 10000000
 for totient in eu.primes.totients_below_not_in_order(size):
@@ -29,6 +29,6 @@ for totient in eu.primes.totients_below_not_in_order(size):
             minratio = ratio
             numofminratio = n
             phiofnumofminratio = t
-            print("NEW MIN PERMUTATION --> min n/phi is {} for n {} and phi {}".format(ratio, n, t))
+            print("NEW MIN PERMUTATION --> min num/phi is {} for num {} and phi {}".format(ratio, n, t))
 
-print("min n/phi is {} for n {} and phi {}".format(minratio, numofminratio,phiofnumofminratio))
+print("min num/phi is {} for num {} and phi {}".format(minratio, numofminratio,phiofnumofminratio))

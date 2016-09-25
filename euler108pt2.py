@@ -3,12 +3,12 @@ import sortedcontainers as sc
 
 # Only run this version in Debug mode.  It keeps hanging my system.
 
-# 1/x + 1/y = 1/n ==> xy /(y+x) = n ==> nx + ny = xy
-# nx and ny will always have gcd n
-# for any n, x = 2*n and y = 2*n is always a solution.  This is the solution where x is largest and y is smallest.
-# for any n, x = n+1, y = n*x = n*(n+1) is always a solution.  This is the solution where x is smallest and y is largest.
-# n*(n+1) + n*n*(n+1) = (n+n^2)*(n+1) = n*(n^2 + 1) * (n+1)
-# max possible solutions is 2*n - n+1, one for each possible x
+# 1/x + 1/y = 1/num ==> xy /(y+x) = num ==> nx + ny = xy
+# nx and ny will always have gcd num
+# for any num, x = 2*num and y = 2*num is always a solution.  This is the solution where x is largest and y is smallest.
+# for any num, x = num+1, y = num*x = num*(num+1) is always a solution.  This is the solution where x is smallest and y is largest.
+# num*(num+1) + num*num*(num+1) = (num+num^2)*(num+1) = num*(num^2 + 1) * (num+1)
+# max possible solutions is 2*num - num+1, one for each possible x
 
 #nmax = 100000
 nstart = 24
@@ -26,11 +26,11 @@ for n in test:
     sol_set.add((n*2, n*2))
     x_set.add(n*2)
     count= 2
-    # print("({},{}) ".format(n+1, n*(n+1)), end="")
-    # print("({},{}) ".format(n*2, n *2), end="")
+    # print("({},{}) ".format(num+1, num*(num+1)), end="")
+    # print("({},{}) ".format(num*2, num *2), end="")
     pfactors = set(eu.primes.prime_factors(n))
-    print("prime factors of n {}".format(pfactors))
-    # exclude n+1 and 2*n which we've already added
+    print("prime factors of num {}".format(pfactors))
+    # exclude num+1 and 2*num which we've already added
     for x in range(n+2, n*2):
         y_set = sc.SortedSet()
         for p in pfactors:

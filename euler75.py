@@ -7,7 +7,7 @@ import sortedcontainers as sc
 # only possible triples are (odd, even, odd), (even, odd, even) or (even, even, even)
 # so length can only be even
 
-# this formula generates ALL primitive triples: ( m2 – n2 )2 + (2 m n)2 = ( m2 + n2 )2 for some m and n
+# this formula generates ALL primitive triples: ( m2 – n2 )2 + (2 m num)2 = ( m2 + n2 )2 for some m and num
 # and some but not all non-primitives
 # a primitive triple has no common factors
 

@@ -55,11 +55,11 @@ def special_sum_set(n, middle_val_of_prev_sss, highest_val_of_prev_sss, prev_opt
         lowest_found = test_special_sum_set(possible_sss, lowest_found)
 
 
-# n = 4 optimum special set candidate found (3, 5, 6, 7) with len 21
-# n = 5 optimum special set candidate found (6, 9, 11, 12, 13) with len 51
-# n = 6 optimum special set candidate found (11, 17, 20, 22, 23, 24) with len 117
-# n = 7 optimum special set candidate found (11, 18, 19, 20, 22, 25) with len 115
-# n = 8 optimum special set candidate found (20, 31, 38, 39, 40, 42, 45) with len 255
+# num = 4 optimum special set candidate found (3, 5, 6, 7) with len 21
+# num = 5 optimum special set candidate found (6, 9, 11, 12, 13) with len 51
+# num = 6 optimum special set candidate found (11, 17, 20, 22, 23, 24) with len 117
+# num = 7 optimum special set candidate found (11, 18, 19, 20, 22, 25) with len 115
+# num = 8 optimum special set candidate found (20, 31, 38, 39, 40, 42, 45) with len 255
 special_sum_set(4, 3, 4, 9)
 special_sum_set(5, 6, 7, 21)
 special_sum_set(6, 11, 13, 51)

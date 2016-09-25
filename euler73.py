@@ -3,7 +3,7 @@ from fractions import Fraction
 
 def farey(limit):
     '''Fast computation of Farey sequence as a generator'''
-    # n, d is the start fraction n/d (0,1) initially
+    # num, d is the start fraction num/d (0,1) initially
     # N, D is the stop fraction N/D (1,1) initially
     pend = []
     n = 0
@@ -22,7 +22,7 @@ def farey(limit):
             else:
                 break
 
-# n, d is the start fraction n/d
+# num, d is the start fraction num/d
 # N, D is the stop fraction N/D
 def farey_range(limit,n=0,d=1,N=1,D=1):
     '''Fast computation of Farey sequence as a generator'''
@@ -44,7 +44,7 @@ def farey_range(limit,n=0,d=1,N=1,D=1):
 
 
 def relatively_prime_generator(n, a=1, b=1):
-    ### generates all relatively prime pairs <= n. The larger number comes first.
+    ### generates all relatively prime pairs <= num. The larger number comes first.
     yield (a,b)
     k = 1
     while a*k+b <= n:

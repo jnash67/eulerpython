@@ -1,22 +1,22 @@
 import numpy as np
 
 
-# for the purposes of this problem an m x n grid is the same as an n x m grid
+# for the purposes of this problem an m x num grid is the same as an num x m grid
 # the same number of rectangles will fit in either, regardless of rotation
 def num_rect(maxm, maxn):
     assert (maxm >= maxn, "Rows should be bigger than columns, otherwise rotate")
     rcount = 0
     for n in range(1, maxn + 1):
         for m in range(n, maxm + 1):
-            # see how many m x n rectangles fit going across and down
+            # see how many m x num rectangles fit going across and down
             valmn = (maxm - m + 1) * (maxn - n + 1)
-            #print("For {}x{} we have {}".format(m, n, valmn))
+            #print("For {}x{} we have {}".format(m, num, valmn))
             rcount += valmn
             if (m != n):
                 if (m <= maxn):
-                    # do it for n x m as well if we can
+                    # do it for num x m as well if we can
                     valnm = (maxm - n + 1) * (maxn - m + 1)
-                    #print("For {}x{} we have {}".format(n, m, valnm))
+                    #print("For {}x{} we have {}".format(num, m, valnm))
                     rcount += valnm
     return rcount
 
@@ -24,7 +24,7 @@ def num_rect(maxm, maxn):
 # all the subrectangles are consecutive subsequences of length of some factor or multiple of a factor
 # factors of 6 are 1,2,3,
 
-# so for an m x n grid, we expect m to be the bigger or else m == n
+# so for an m x num grid, we expect m to be the bigger or else m == num
 # grid = (3, 2)
 # grid_area = 3*2
 # arealist = list(range(1,grid_area+1))

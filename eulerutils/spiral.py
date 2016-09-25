@@ -2,7 +2,7 @@ import numpy as np
 import sortedcontainers as sc
 
 
-# n must be odd
+# num must be odd
 def create_clockwise_spiral(size):
     if size % 2 == 0:
         print("Size of spiral should be odd")
@@ -37,7 +37,7 @@ def create_clockwise_spiral(size):
     return n
 
 
-# n must be odd
+# num must be odd
 def create_counterclockwise_spiral(size):
     if size % 2 == 0:
         print("Size of spiral should be odd")
@@ -190,26 +190,26 @@ def get_bottom_left_to_top_right_diagonal(spiral, side_length):
     #         for i in range(0, (2*spiralCount)-1):
     #             x+=1
     #             count+=1
-    #             n[x,y]=count
+    #             num[x,y]=count
     #
     #         # go left 2 * spiralCount times
     #         for i in range(0, (2*spiralCount)):
     #             y-=1
     #             count+=1
-    #             n[x,y]=count
+    #             num[x,y]=count
     #
     #         # go up 2 * spiralCount times
     #         for i in range(0, (2*spiralCount)):
     #             x-=1
     #             count+=1
-    #             n[x,y]=count
+    #             num[x,y]=count
     #
     #         # go right 2 * spiralCount times
     #         for i in range(0, (2*spiralCount)):
     #             y+=1
     #             count+=1
-    #             n[x,y]=count
+    #             num[x,y]=count
     #
     #         spiralCount += 1
     #
-    #     return n
+    #     return num

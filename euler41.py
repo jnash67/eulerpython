@@ -10,7 +10,7 @@ def num_digits(n):
     return d
 
 # pandigital use all digits from 1-9
-# n-digit pandigital makes use of all digits 1 to n
+# num-digit pandigital makes use of all digits 1 to num
 def isNDigitPandigital(num, n):
     allstr = str(num)
     resultSet = set()

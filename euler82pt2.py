@@ -58,7 +58,7 @@ size = 5
 # file = "tinymatrix.txt"
 # size = 2
 
-# n = np.zeros((size,size))
+# num = np.zeros((size,size))
 nodes = np.empty((size, size), dtype=object)
 load()
 

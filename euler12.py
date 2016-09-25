@@ -25,8 +25,8 @@ def FindAllDivisors(x):
 def number_of_divisors(x):
     return len(FindAllDivisors(x))
 
-# def divisorGenSmart(n):
-#     factors = list(factorGenerator(n))
+# def divisorGenSmart(num):
+#     factors = list(factorGenerator(num))
 #     nfactors = len(factors)
 #     f = [0] * nfactors
 #     while True:

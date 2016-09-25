@@ -9,14 +9,14 @@ mobius_dict = collections.defaultdict(int)
 divisors_dict = collections.defaultdict(list)
 
 
-# In problem 108 and 110 we worked with OEIS A018892, Number of ways to write 1/n as a sum of exactly
+# In problem 108 and 110 we worked with OEIS A018892, Number of ways to write 1/num as a sum of exactly
 # 2 unit fractions. That page points out that the series is is equivalent to the number of pairs (x,y)
-# such that LCM(x,y)=n.  So OEIS 018892 is part of the answer to this question as well.
+# such that LCM(x,y)=num.  So OEIS 018892 is part of the answer to this question as well.
 # This involves A182082, A061503, A048691
 
 # sigma_1(ab) = sigma_1(a)*sigma_1(b)
-# A018892 = (sigma_0(n^2)+1)//2
-# g(n) is the sum of the A018892s from 1 to n inclusive.
+# A018892 = (sigma_0(num^2)+1)//2
+# g(num) is the sum of the A018892s from 1 to num inclusive.
 #
 # we are given g(10^6) = 37429395.
 # since g is a summation over sigma_0 which is multiplicative, it too is multiplicative
@@ -36,10 +36,10 @@ def A182082(nval):
 
 
 # sigma_0 aka tau
-# def fast_sigma_0(n):
-#     if n == 1:
+# def fast_sigma_0(num):
+#     if num == 1:
 #         return 1
-#     pd = prime_factors_dict(n)
+#     pd = prime_factors_dict(num)
 #     s0mult = 1
 #     for p, e in pd.items():
 #         s0mult *= (e + 1)
@@ -50,7 +50,7 @@ def A182082(nval):
 # def sigma_0(nval):
 #     return divisor_count(nval)
 
-# Number of distinct primes dividing n. http://oeis.org/A001221
+# Number of distinct primes dividing num. http://oeis.org/A001221
 def omega(nval):
     if nval == 1:
         return 0
@@ -138,8 +138,8 @@ def sigma_0_nsquared(nval):
 
 
 
-# sigma_0(n^p). sigma_0_pow(n,1)=sigma_0(n)=tau(n)=tau_2(n) -> http://oeis.org/A000005
-# sigma_0_pow(n,2)=sigma_0(n^2)=http://oeis.org/A048691
+# sigma_0(num^p). sigma_0_pow(num,1)=sigma_0(num)=tau(num)=tau_2(num) -> http://oeis.org/A000005
+# sigma_0_pow(num,2)=sigma_0(num^2)=http://oeis.org/A048691
 def sigma_0_pow(nval, powval=1):
     if nval == 1:
         return 1
@@ -171,9 +171,9 @@ def sigma_1(nval):
     return int(psigmult)
 
 
-# sigma_k(n,0)=sigma_0(n)=count of divisors of n -> A000005
-# sigma_k(n,1)=sigma_1(n)=sum of divisors of n -> A000203
-# sigma_k(n,2)=sigma_2(n)=sum of squares of divisors of n -> A001157
+# sigma_k(num,0)=sigma_0(num)=count of divisors of num -> A000005
+# sigma_k(num,1)=sigma_1(num)=sum of divisors of num -> A000203
+# sigma_k(num,2)=sigma_2(num)=sum of squares of divisors of num -> A001157
 def sigma_k(nval, kval=1):
     if nval == 1:
         return 1
@@ -205,7 +205,7 @@ def sum_of_sigma_0s(nval):
 
 # http://oeis.org/A061503
 def sum_of_sigma_0s_for_nsquared_using_omega(nval):
-    # Sum(i=1..n, 2 ^ omega(i) * floor(n / i))
+    # Sum(i=1..num, 2 ^ omega(i) * floor(num / i))
     sigma_0_sum = 0
     for i in range(1, nval + 1):
         # ss += sigma_0_pow(i, 2)
@@ -224,14 +224,14 @@ def sum_of_sigma_0s_for_nsquared(nval):
 
 # http://oeis.org/A061503
 # algorithm from: https://math.stackexchange.com/questions/133630/divisor-summatory-function-for-squares
-# There's a bug here.  It's off by 1 for n = 10^6 (i.e. 37429394 instead of 37429395) and
-# n = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
+# There's a bug here.  It's off by 1 for num = 10^6 (i.e. 37429394 instead of 37429395) and
+# num = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
 def fast_sum_of_sigma_0s_for_nsquared(nval):
     sqrtn = math.floor(math.sqrt(nval))
     lval = 0
     for a in range(1, sqrtn + 1):
         if a % 100000 == 0:
-            print("On n {}".format(a))
+            print("On num {}".format(a))
         if a in mobius_dict:
             mob = mobius_dict[a]
         else:
@@ -244,7 +244,7 @@ def fast_sum_of_sigma_0s_for_nsquared(nval):
 
 
 # http://oeis.org/A061201
-# This is the sum of tau_3(n) aka d_3(n) which is A007425
+# This is the sum of tau_3(num) aka d_3(num) which is A007425
 def fast_sum_of_tau_3(nval):
     lval = 0
     zmax = math.floor(math.pow(nval, fractions.Fraction(1, 3)))
@@ -269,12 +269,12 @@ def stats(nval):
     s0 = sigma_0_pow(nval, 1)
     s0sq = sigma_0_pow(nval, 2)
     # s0sq2 = sigma_0_nsquared(nval)
-    print("tau/sigma_0(n) {}: {}".format(nval, s0))
-    print("tau^2(n) {}: {}".format(nval, s0sq))
-    # print("tau^2(n) using mobius {}: {}".format(nval, s0sq2))
-    print("sum of sigma_0s(n) {}: {}".format(nval, sum_of_sigma_0s(nval)))
-    # print("sum_of_sigma_0s_squared(n) {}: {}".format(nval, fast_sum_of_sigma_0s_for_nsquared(nval)))
-    print("sum of A018892(n) {}: {}".format(nval, A182082(nval)))
+    print("tau/sigma_0(num) {}: {}".format(nval, s0))
+    print("tau^2(num) {}: {}".format(nval, s0sq))
+    # print("tau^2(num) using mobius {}: {}".format(nval, s0sq2))
+    print("sum of sigma_0s(num) {}: {}".format(nval, sum_of_sigma_0s(nval)))
+    # print("sum_of_sigma_0s_squared(num) {}: {}".format(nval, fast_sum_of_sigma_0s_for_nsquared(nval)))
+    print("sum of A018892(num) {}: {}".format(nval, A182082(nval)))
     print("=================")
 
 
@@ -291,7 +291,7 @@ n1 = int(math.pow(10, 6))
 n2 = int(math.pow(10, 12))
 
 start_time = time.time()
-print("sum of A018892(n) {}: {}".format(n2, A182082(n2)))
+print("sum of A018892(num) {}: {}".format(n2, A182082(n2)))
 finish_time = time.time()
 print("Running Time: %.3f seconds" % (finish_time - start_time))
 
@@ -303,15 +303,15 @@ stats(n2)
 
 # sumtau = 0
 # sumtausq = 0
-# for n in range(1, 10 + 1):
-#     if n % 100000 == 0:
-#         print("On n {}".format(n))
-#     tau = fast_sigma_0(n)
-#     t2 = fast_sigma_0(n * n)
+# for num in range(1, 10 + 1):
+#     if num % 100000 == 0:
+#         print("On num {}".format(num))
+#     tau = fast_sigma_0(num)
+#     t2 = fast_sigma_0(num * num)
 #     sumtau += tau
 #     sumtausq += t2
-# # print("{}: {}".format(n, g))
-# print("n:{} sum of tau(n):{}  sum of tau(n^2):{}".format(10, sumtau, sumtausq))
+# # print("{}: {}".format(num, g))
+# print("num:{} sum of tau(num):{}  sum of tau(num^2):{}".format(10, sumtau, sumtausq))
 # finish = time.time()
 
 start_time = time.time()
@@ -319,13 +319,13 @@ sumtau = 0
 sumtausq = 0
 for i in range(1, n1 + 1):
     if i % 100000 == 0:
-        print("On n {}".format(i))
+        print("On num {}".format(i))
     # tau, tausq = sigma_0_and_sigma_0_squared(i)
     tau = sigma_0_pow(i, 1)
     tausq = sigma_0_pow(i, 2)
     sumtau += tau
     sumtausq += tausq
-print("n:{} sum of tau(n):{}  sum of tau(n^2):{}".format(n1, sumtau, sumtausq))
+print("num:{} sum of tau(num):{}  sum of tau(num^2):{}".format(n1, sumtau, sumtausq))
 finish_time = time.time()
 print("Running Time: %.3f seconds" % (finish_time - start_time))
 
@@ -357,21 +357,21 @@ print("Running Time: %.3f seconds" % (finish_time - start_time))
 # print("Divisors {}:{}".format(n2, divisors(n2)))
 
 #
-# print("\nPrime Factors of Multiple between Sum(Tau(n)^2)/sum(Tau(n))")
+# print("\nPrime Factors of Multiple between Sum(Tau(num)^2)/sum(Tau(num))")
 # print("Prime Factors {}:{}".format(376197, prime_factors_dict(376197)))
 # print("Prime Factors {}:{}".format(463463, prime_factors_dict(463463)))
 # print("Prime Factors {}:{}".format(898597, prime_factors_dict(898597)))
 #
-# print("\nPrime Factors of Sum(Tau(n))")
+# print("\nPrime Factors of Sum(Tau(num))")
 # print("Prime Factors {}:{}".format(13970034, prime_factors_dict(13970034)))
 # print("Prime Factors {}:{}".format(29326296, prime_factors_dict(29326296)))
 # print("Prime Factors {}:{}".format(27785452449086, prime_factors_dict(27785452449086)))
 #
-# print("\nPrime Factors of Sum(Tau(n^2))")
+# print("\nPrime Factors of Sum(Tau(num^2))")
 # print("Prime Factors {}:{}".format(73858790, prime_factors_dict(73858790)))
 # print("Prime Factors {}:{}".format(161230032, prime_factors_dict(161230032)))
 #
-# print("\nPrime Factors of Sum(Tau(n)^2)")
+# print("\nPrime Factors of Sum(Tau(num)^2)")
 # print("Prime Factors {}:{}".format(421094344, prime_factors_dict(421094344)))
 # print("Prime Factors {}:{}".format(957082634, prime_factors_dict(957082634)))
 #
@@ -394,10 +394,10 @@ start_time = time.time()
 g = 0
 for i in range(1, n1 + 1):
     if i % 100000 == 0:
-        print("On n {}".format(i))
+        print("On num {}".format(i))
     tau = sigma_0_pow(i, 1)
     g += tau
-# print("{}: {}".format(n, g))
+# print("{}: {}".format(num, g))
 print("{} {}".format(i, g))
 finish_time = time.time()
 print("Running Time: %.3f seconds" % (finish_time - start_time))
@@ -406,7 +406,7 @@ start_time = time.time()
 g = 0
 for i in range(1, n1 + 1):
     if i % 100000 == 0:
-        print("On n {}".format(i))
+        print("On num {}".format(i))
     g += sigma_1(i)
 print("{} {}".format(i, g))
 finish_time = time.time()
@@ -424,38 +424,38 @@ g = 0
 print("\tA00005\tA00005\tA000005\tA048691\tA000203\tA001157")
 for i in range(1, 10 + 1):
     if i % 100000 == 0:
-        print("On n {}".format(i))
-    # g += a018892(n)
-    # tau = tau(n)
+        print("On num {}".format(i))
+    # g += a018892(num)
+    # tau = tau(num)
     # g += tau * tau
     sig = sigma_1(i)
-    # tau = tau(n)
-    # t0 = sigma_k(n, 0)
-    # t0_2 = sigma_0_pow(n, 1)
-    # t0sq = sigma_0_pow(n, 2)
-    # t1 = sigma_k(n, 1)
-    # t2 = sigma_k(n, 2)
+    # tau = tau(num)
+    # t0 = sigma_k(num, 0)
+    # t0_2 = sigma_0_pow(num, 1)
+    # t0sq = sigma_0_pow(num, 2)
+    # t1 = sigma_k(num, 1)
+    # t2 = sigma_k(num, 2)
     # g += t2
-    # print("{}:\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}".format(n, tau, t0,t0_2, t0sq, t1, t2, g))
+    # print("{}:\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}\tau\tau{}".format(num, tau, t0,t0_2, t0sq, t1, t2, g))
     print("{} {}".format(i, sig))
-# print("{}: {}".format(n, g))
+# print("{}: {}".format(num, g))
 finish_time = time.time()
 print("Running Time: %.3f seconds" % (finish_time - start_time))
 
 # start = time.time()
 # g = 1
-# for n in range(2, n1 + 1):
-#     g += a018892_2(n)
-# print("{} {}".format(n, g))
+# for num in range(2, n1 + 1):
+#     g += a018892_2(num)
+# print("{} {}".format(num, g))
 # finish = time.time()
 # print("Running Time a018892_2: %.3f seconds" % (finish - start,))
 
 # start = time.time()
 # g = 0
-# for n in range(1, 100 + 1):
-#     if n % 100000 == 0:
-#         print("On n {}".format(n))
-#     g += tau(n)
-# print("{} {}".format(n, g))
+# for num in range(1, 100 + 1):
+#     if num % 100000 == 0:
+#         print("On num {}".format(num))
+#     g += tau(num)
+# print("{} {}".format(num, g))
 # finish = time.time()
 # print("Running Time: %.3f seconds" % (finish - start,))

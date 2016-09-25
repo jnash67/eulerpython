@@ -1,7 +1,7 @@
 import eulerutils as eu
 import itertools
 
-# Here we don't need to have an actual special sum set.  We need a set of size n where all
+# Here we don't need to have an actual special sum set.  We need a set of size num where all
 # values are strictly increasing.  We can just assume that all subsets of unequal size
 # follow rule 2.  We just need to see how many comparisons we would need to do to check for compliance
 # with rule 1 that equal size subsets don't have the same sums.  For this, we don't care what the
@@ -9,7 +9,7 @@ import itertools
 # the values of the one don't all come from the beginning of the special set and the values of the other
 # don't all come from later then a check is needed.
 
-# For a given n, we want to iterate through all pairs of disjoint subsets of equal size 1..n-1
+# For a given num, we want to iterate through all pairs of disjoint subsets of equal size 1..num-1
 
 
 def all_disjoint_pairs_of_equal_size(strictly_increasing_set):

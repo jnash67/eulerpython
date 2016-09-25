@@ -27,20 +27,20 @@ numwithmaxperiod = 0
 largestnuminperiod = 0
 numwithlargestnuminperiod = 0
 for n in range(1, 10001):
-    # for n in range(2,101):
+    # for num in range(2,101):
     integer_part = int(math.sqrt(n))
     first_integer_part = integer_part
     aftersemicolonintegerparts = []
     numerator = 1
     addend_in_denominator = -1 * integer_part
-    # print("sqrt(n)=[{};(".format(integer_part),end='')
+    # print("sqrt(num)=[{};(".format(integer_part),end='')
     perfectsquare = False
     # largest period is 217 so we need a couple of multiples of that at least
     # to spot the pattern
     for i in range(0, 1000):
-        # Now invert --> i.e. take one over the sqrt(n) + added in denom and "simplify"
-        # multiply by (sqrt(n) + (-1* addend)) / (sqrt(n) + (-1* addend))
-        # n - int^2
+        # Now invert --> i.e. take one over the sqrt(num) + added in denom and "simplify"
+        # multiply by (sqrt(num) + (-1* addend)) / (sqrt(num) + (-1* addend))
+        # num - int^2
         new_denom_without_square_root = n - (addend_in_denominator ** 2)
         if (new_denom_without_square_root == 0):
             # perfect square
@@ -77,7 +77,7 @@ for n in range(1, 10001):
     else:
         period = 0
 
-        # print("{} {}".format(n,period))
+        # print("{} {}".format(num,period))
 
 print("The total odd count is {}".format(oddcount))
 print("The max period is {} for {}".format(maxperiod, numwithmaxperiod))

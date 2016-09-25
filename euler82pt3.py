@@ -111,7 +111,7 @@ size = 5
 # file = "p082_matrix.txt"
 # size = 80
 
-# n = np.zeros((size,size))
+# num = np.zeros((size,size))
 nodes = np.empty((size, size), dtype=object)
 load()
 

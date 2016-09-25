@@ -24,7 +24,7 @@ print(list(itertools.product('RD', repeat=4)))
 
 # The code below is way too slow
 # It's the number of ways to choose exactly half of 2 * gridsize of Rs and Ds
-# so it's just n choose k or n! / (k! * (n-k)!) or 40 choose 20 or 40! / (20! * 20!)
+# so it's just num choose k or num! / (k! * (num-k)!) or 40 choose 20 or 40! / (20! * 20!)
 answer = math.factorial(40) / (math.factorial(20)**2)
 print("answer is " + str(answer))
 

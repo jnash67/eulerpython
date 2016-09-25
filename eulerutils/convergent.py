@@ -61,23 +61,23 @@ def period_of_convergent_fraction_representation_of_sqrt(list):
 
 # largest period is 217 for N<=10,000 so we need a couple of multiples of that at least
 # to spot the pattern
-# Tested for n<=10000
+# Tested for num<=10000
 def convergent_fraction_representation_of_sqrt(n):
     assert (n <= 10000,
-            "This may not work for this n.  The largest period for n<=10k is 217.  Need to be sure we have a long enough string to find the pattern.")
+            "This may not work for this num.  The largest period for num<=10k is 217.  Need to be sure we have a long enough string to find the pattern.")
 
     integer_part = int(math.sqrt(n))
     first_integer_part = integer_part
     aftersemicolonintegerparts = []
     numerator = 1
     addend_in_denominator = -1 * integer_part
-    # print("sqrt(n)=[{};(".format(integer_part),end='')
+    # print("sqrt(num)=[{};(".format(integer_part),end='')
     perfectsquare = False
     # go for a long time until we're sure we've duplicated the repeating
     for i in range(0, 1000):
-        # Now invert --> i.e. take one over the sqrt(n) + added in denom and "simplify"
-        # multiply by (sqrt(n) + (-1* addend)) / (sqrt(n) + (-1* addend))
-        # n - int^2
+        # Now invert --> i.e. take one over the sqrt(num) + added in denom and "simplify"
+        # multiply by (sqrt(num) + (-1* addend)) / (sqrt(num) + (-1* addend))
+        # num - int^2
         new_denom_without_square_root = n - (addend_in_denominator ** 2)
         if (new_denom_without_square_root == 0):
             # perfect square

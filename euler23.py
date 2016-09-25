@@ -63,7 +63,7 @@ There are 1456 positive ints under 28124 that cannot be written as the sum of tw
 The sum of these are 4179871
 In the range there are 4 perfects, 21154 deficients, and 6965 abundants
 
-We iterate through 6965 (n) choose 2 (r) with replacement permutations which is a total of  (n + r - 1)!/r!(n-1)!
+We iterate through 6965 (num) choose 2 (r) with replacement permutations which is a total of  (num + r - 1)!/r!(num-1)!
 6966!/2!6965! = 24,259,095
 """
 print("There are {} positive ints under 28124 that cannot be written as the sum of two abundant numbers".format(remaining))

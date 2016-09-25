@@ -22,9 +22,9 @@ for i in range(1000000,1,-1):
 
 print(str(max) + "   " + str(maxi))
 
-# n = 13
-# print(n)
-# for val in next_in_collatz_sequence(n):
+# num = 13
+# print(num)
+# for val in next_in_collatz_sequence(num):
 #     print(val)
 #
 # print("============================")
@@ -33,7 +33,7 @@ print(str(max) + "   " + str(maxi))
 #
 # print(collatz_count(13))
 #
-# nics = next_in_collatz_sequence(n)
+# nics = next_in_collatz_sequence(num)
 # print(nics)
 # while (nics!=1):
 #     nics = next_in_collatz_sequence(nics)

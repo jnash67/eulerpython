@@ -49,7 +49,7 @@ def combinations_with_replacement_with_terminating_condition(iterable, r):
     else:
         # globaltprod = eu.number.product(t)
         # if globaltprod > globalmax:
-        #     indices[0] = n - 1
+        #     indices[0] = num - 1
         # else:
         yield t
     while True:
@@ -66,12 +66,12 @@ def combinations_with_replacement_with_terminating_condition(iterable, r):
         else:
             # globaltprod = eu.number.product(t)
             # if globaltprod > globalmax:
-            #     indices[i] = n - 1
+            #     indices[i] = num - 1
             # else:
             yield t
 
 
-# returns 1 if n can be written as sum of k primes (with repetitions allowed) and 0 otherwise
+# returns 1 if num can be written as sum of k primes (with repetitions allowed) and 0 otherwise
 def P(n, k):
     if k >= n:
         return 0

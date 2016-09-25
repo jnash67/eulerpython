@@ -15,8 +15,8 @@ def divisorGeneratorDumb(n):
 def triangular_number(n):
     return n * (n + 1) // 2
 
-# def divisorGenSmart(n):
-#     factors = list(factorGenerator(n))
+# def divisorGenSmart(num):
+#     factors = list(factorGenerator(num))
 #     nfactors = len(factors)
 #     f = [0] * nfactors
 #     while True:
@@ -39,9 +39,9 @@ def chunk(seq, chunksize, process=iter):
     while True:
         yield process(itertools.chain([it.next()], itertools.islice(it, chunksize - 1)))
 
-# n = 6965
+# num = 6965
 # r = 2
-# answer = math.factorial(n+r-1)/(math.factorial(r)*math.factorial(n-1))
+# answer = math.factorial(num+r-1)/(math.factorial(r)*math.factorial(num-1))
 # print(answer)
 
 lst = ['a', 'b', 'c', 'd', 'e', 'f']

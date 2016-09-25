@@ -18,7 +18,7 @@ for digit in str_digits:
     M[digit] = 0
 
 # i.e. in a d digit number, the maximum possible number of repeated str_digits is d
-for max_possible_repeated in range(4, highest_max+1):
+for max_possible_repeated in range(9, highest_max+1):
     start_time = time.time()
     n1 = int(math.pow(10, max_possible_repeated - 1))
     n2 = int(math.pow(10, max_possible_repeated))

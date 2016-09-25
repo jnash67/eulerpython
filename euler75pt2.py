@@ -9,18 +9,18 @@ import eulerutils as eu
 # only possible triples are (odd, even, odd), (even, odd, even) or (even, even, even)
 # so length can only be even
 
-# this formula generates ALL primitive triples: ( m2 – n2 )2 + (2 m n)2 = ( m2 + n2 )2 for some m and n
+# this formula generates ALL primitive triples: ( m2 – n2 )2 + (2 m num)2 = ( m2 + n2 )2 for some m and num
 # and some but not all non-primitives
 # a primitive triple has no common factors
-# m^2 + n^2 < max length
-# if m>n, m < sqrt(max length / 2)
+# m^2 + num^2 < max length
+# if m>num, m < sqrt(max length / 2)
 
 @eu.timing.timeit
 def use_math_gcd():
     global lengthsDict
     for m in range(2, size//2):
         for n in range(1, m):
-            # m - n has to be odd
+            # m - num has to be odd
             if (m - n) % 2 == 1:
                 msq = m * m
                 nsq = n * n
@@ -53,7 +53,7 @@ def use_my_own_primitives_function():
     global lengthsDict2
     for m in range(2, size//2):
         for n in range(1, m):
-            # m - n has to be odd
+            # m - num has to be odd
             if (m - n) % 2 == 1:
                 msq = m * m
                 nsq = n * n

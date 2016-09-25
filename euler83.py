@@ -25,7 +25,7 @@ def load():
 file = "p083_matrix.txt"
 size = 80
 
-# n = np.zeros((size,size))
+# num = np.zeros((size,size))
 # nodes is zero-based array but rows & columns for table are 1-based
 nodes = np.empty((size, size), dtype=object)
 load()

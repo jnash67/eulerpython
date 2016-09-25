@@ -11,9 +11,9 @@ size = 1000000
 upper_bound = Fraction(3, 7)
 lower_bound = Fraction(2, 5)
 
-# all 1/n are reduced proper fractions.  After 1/2 =0.5 none are bigger then 2/5 = 0.4
-# all 2/n for odd n are reduced proper fractions but after 2/5 none are bigger than 2/5
-# no 3/n are to the left of 3/7 for n>7
+# all 1/num are reduced proper fractions.  After 1/2 =0.5 none are bigger then 2/5 = 0.4
+# all 2/num for odd num are reduced proper fractions but after 2/5 none are bigger than 2/5
+# no 3/num are to the left of 3/7 for num>7
 # so we start with 4 and go up to
 # primes = eu.primes.fast_all_primes_less_than(size)
 # primeFactorsDict = {}

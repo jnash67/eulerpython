@@ -14,7 +14,7 @@ divisors_dict = collections.defaultdict(list)
 # Ramanujan tau is A000594: http://oeis.org/A000594
 # From http://mathworld.wolfram.com/TauFunction.html
 # Ramanujan gave the computationally efficient triangular recurrence formula
-# (n-1)tau(n)=sum_(m=1)^(b_n)(-1)^(m+1)(2m+1)×[n-1-9/2m(m+1)]tau(n-1/2m(m+1))
+# (num-1)tau(num)=sum_(m=1)^(b_n)(-1)^(m+1)(2m+1)×[num-1-9/2m(m+1)]tau(num-1/2m(m+1))
 # where: b_n=1/2(sqrt(8n+1)-1)
 def ramanujan_tau(n):
     if n == 1:
@@ -47,7 +47,7 @@ def A182082(nval):
     return (sumsig + nval) // 2
 
 
-# Number of distinct primes dividing n. http://oeis.org/A001221
+# Number of distinct primes dividing num. http://oeis.org/A001221
 def omega(nval):
     if nval == 1:
         return 0
@@ -103,8 +103,8 @@ def sigma_0_nsquared(nval):
     return int(sigval)
 
 
-# sigma_0(n^p). sigma_0_pow(n,1)=sigma_0(n)=tau(n)=tau_2(n) -> http://oeis.org/A000005
-# sigma_0_pow(n,2)=sigma_0(n^2)=http://oeis.org/A048691
+# sigma_0(num^p). sigma_0_pow(num,1)=sigma_0(num)=tau(num)=tau_2(num) -> http://oeis.org/A000005
+# sigma_0_pow(num,2)=sigma_0(num^2)=http://oeis.org/A048691
 def sigma_0_pow(nval, powval=1):
     if nval == 1:
         return 1
@@ -136,9 +136,9 @@ def sigma_1(nval):
     return int(psigmult)
 
 
-# sigma_k(n,0)=sigma_0(n)=count of divisors of n -> A000005
-# sigma_k(n,1)=sigma_1(n)=sum of divisors of n -> A000203
-# sigma_k(n,2)=sigma_2(n)=sum of squares of divisors of n -> A001157
+# sigma_k(num,0)=sigma_0(num)=count of divisors of num -> A000005
+# sigma_k(num,1)=sigma_1(num)=sum of divisors of num -> A000203
+# sigma_k(num,2)=sigma_2(num)=sum of squares of divisors of num -> A001157
 def sigma_k(nval, kval=1):
     if nval == 1:
         return 1
@@ -162,14 +162,14 @@ def sum_of_sigma_0s(nval):
 
 # http://oeis.org/A061503
 # algorithm from: https://math.stackexchange.com/questions/133630/divisor-summatory-function-for-squares
-# There's a bug here.  It's off by 1 for n = 10^6 (i.e. 37429394 instead of 37429395) and
-# n = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
+# There's a bug here.  It's off by 1 for num = 10^6 (i.e. 37429394 instead of 37429395) and
+# num = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
 def fast_sum_of_sigma_0s_for_nsquared(nval):
     sqrtn = math.floor(math.sqrt(nval))
     lval = 0
     for a in range(1, sqrtn + 1):
         if a % 100000 == 0:
-            print("On n {}".format(a))
+            print("On num {}".format(a))
         if a in mobius_dict:
             mob = mobius_dict[a]
         else:
@@ -182,7 +182,7 @@ def fast_sum_of_sigma_0s_for_nsquared(nval):
 
 
 # http://oeis.org/A061201
-# This is the sum of tau_3(n) aka d_3(n) which is A007425
+# This is the sum of tau_3(num) aka d_3(num) which is A007425
 def fast_sum_of_tau_3(nval):
     lval = 0
     zmax = math.floor(math.pow(nval, 1 / 3))

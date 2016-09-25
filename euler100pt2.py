@@ -26,14 +26,14 @@ trillion = 10 ** 12
 xn = 1
 yn = 0
 n = 0
-print("for n={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
+print("for num={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
 while True:
     xnplus1 = 1 * xn + 2 * yn + 0
     ynplus1 = 2 * xn + 5 * yn - 1
     xn = xnplus1
     yn = ynplus1
     n += 1
-    print("for n={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
+    print("for num={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
     if xn + yn > trillion:
         break
 
@@ -41,7 +41,7 @@ while True:
 Not exactly sure why but the right answer is X17 = 756872327473 and Y16 = 313506783024
 Not sure why it isn't X17 and Y17.  Still, X17, Y16 results in exactly 1/2
 """
-print("for n={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
+print("for num={}, {} blue and {} red for {} total".format(n, xn, yn, xn + yn))
 print("{} blue and {} red for {} total".format(xn, yn - xn, yn))
 
 print(prob_of_two_blue(756872327473, 313506783024))

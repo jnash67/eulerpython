@@ -15,17 +15,17 @@ def sum_digits(n):
     return s
 
 
-# only works for positive n
+# only works for positive num
 def last_digit(n):
     return n % 10
 
 
-# only works for positive n
+# only works for positive num
 def last_n_digits(num, n):
     return int(str(num)[-n:])
 
 
-# only works for positive n
+# only works for positive num
 def first_n_digits(num, n):
     return int(str(num)[:n])
 

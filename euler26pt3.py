@@ -7,7 +7,7 @@ def longest_common_substring(a):
         freqs=Counter(substrings)
         if freqs.most_common(1)[0][1]>=3:
             seq=freqs.most_common(1)[0][0]
-            # print("sequence '{}' of length {} occurs {} or more times".format(seq,n,times))
+            # print("sequence '{}' of length {} occurs {} or more times".format(seq,num,times))
             return seq
 
 def longest_unique_substr(S):

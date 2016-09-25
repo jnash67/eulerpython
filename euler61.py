@@ -241,10 +241,10 @@ for tr in triangulars:
                             # if each number's first two digits aren't at least two other numbers last two digit's
                             # then skip this permutation
                             # skip = False
-                            # for n in setOfEach:
-                            #     firsttwo = eu.number.first_n_digits(n, 2)
+                            # for num in setOfEach:
+                            #     firsttwo = eu.number.first_n_digits(num, 2)
                             #     c = how_many_numbers_have_last_two_digits(firsttwo, setOfEach)
-                            #     # we add 1 because the n is part of the setOfEach
+                            #     # we add 1 because the num is part of the setOfEach
                             #     if c < 3:
                             #         skip = True
                             #         break

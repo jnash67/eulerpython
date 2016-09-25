@@ -3,7 +3,7 @@ import itertools
 import eulerutils.primes
 
 # it is OEIS secquence A018892: http://oeis.org/A018892
-# There it says that one formula for the sequence is: a(n) = (tau(n^2)+1)/2
+# There it says that one formula for the sequence is: a(num) = (tau(num^2)+1)/2
 
 def A018892(n):
     return (eulerutils.primes.tau(int(n * n)) + 1) // 2

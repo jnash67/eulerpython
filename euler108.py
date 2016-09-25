@@ -1,10 +1,10 @@
 import math
 
-# 1/x + 1/y = 1/n ==> xy /(y+x) = n ==> nx + ny = xy
-# nx and ny will always have gcd n
-# for any n, x = 2*n and y = 2*n is always a solution.  This is the solution where x is largest and y is smallest.
-# for any n, x = n+1, y = n*x = n*(n+1) is always a solution.  This is the solution where x is smallest and y is largest.
-# n*(n+1) + n*n*(n+1) = (n+n^2)*(n+1) = n*(n^2 + 1) * (n+1)
+# 1/x + 1/y = 1/num ==> xy /(y+x) = num ==> nx + ny = xy
+# nx and ny will always have gcd num
+# for any num, x = 2*num and y = 2*num is always a solution.  This is the solution where x is largest and y is smallest.
+# for any num, x = num+1, y = num*x = num*(num+1) is always a solution.  This is the solution where x is smallest and y is largest.
+# num*(num+1) + num*num*(num+1) = (num+num^2)*(num+1) = num*(num^2 + 1) * (num+1)
 
 # gcd(x,y) = x or some prime factor of x, given x is the smaller one
 def egcd(a, b):
@@ -52,7 +52,7 @@ nstart = 2
 nmax = 100
 solutions_to_exceed = 1000
 count = 0
-#for n in range(nstart, nmax+1):
+#for num in range(nstart, nmax+1):
 for n in test:
     print("\n({}): ".format(n), end="")
     y_max = n * (n + 1)

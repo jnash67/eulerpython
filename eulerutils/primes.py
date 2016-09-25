@@ -15,7 +15,7 @@ primesList = []
 # primesfrom2to from http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n
 def very_fast_numpy_primes_less_than(n):
     # http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
-    """ Input n>=6, Returns a array of primes, 2 <= p < n """
+    """ Input num>=6, Returns a array of primes, 2 <= p < num """
     sieve = np.ones(n / 3 + (n % 6 == 2), dtype=np.bool)
     sieve[0] = False
     for i in range(0, int(n ** 0.5) // 3 + 1):
@@ -29,7 +29,7 @@ def very_fast_numpy_primes_less_than(n):
 # rwh_primes1 from http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n
 def fast_all_primes_less_than(n):
     # http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
-    """ Returns  a list of primes < n """
+    """ Returns  a list of primes < num """
     sieve = [True] * (n // 2)
     for i in range(3, int(n ** 0.5) + 1, 2):
         if sieve[i // 2]:
@@ -66,7 +66,7 @@ def phi(n):
 
 
 # Aka phi
-# another implementation is -> return len(totatives(n))
+# another implementation is -> return len(totatives(num))
 def totient(n):
     if n == 1:
         return 1
@@ -79,7 +79,7 @@ def totient(n):
 
 
 def omega(n):
-    # return len(prime_factors(n))
+    # return len(prime_factors(num))
     return eu.numtheory.omega(n)
 
 
@@ -103,7 +103,7 @@ def get_primes(number):
         number += 1
 
 
-# returns prime after n
+# returns prime after num
 def next_prime(n):
     if n % 2 == 0:
         n += 1
@@ -179,14 +179,14 @@ def slow_divisors(n):
     return [k for k in range(1, n + 1) if divides(k, n)]
 
 
-# Number of divisors. Also called sigma_0(n). Also called d(n). Different from Ramanujan Tau.
+# Number of divisors. Also called sigma_0(num). Also called d(num). Different from Ramanujan Tau.
 def tau(n):
     return eu.numtheory.sigma_k(n, 0)
 
 
-# sigma(n,0) = tau(n)
+# sigma(num,0) = tau(num)
 def sigma(n, k=1):
-    # return sum(math.pow(i, k) for i in fast_divisors(n))
+    # return sum(math.pow(i, k) for i in fast_divisors(num))
     return eu.numtheory.sigma_k(n, k)
 
 

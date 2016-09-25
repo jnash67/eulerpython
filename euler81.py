@@ -22,7 +22,7 @@ file = "p081_matrix.txt"
 size = 80
 # file = "matrix1.txt"
 # size = 5
-# n = np.zeros((size,size))
+# num = np.zeros((size,size))
 nodes = np.empty((size, size), dtype=object)
 lineCount = 0
 for line in list(open(file)):

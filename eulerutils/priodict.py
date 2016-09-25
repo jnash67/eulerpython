@@ -49,7 +49,7 @@ too large, to avoid memory leakage.'''
         heap = self.__heap
         if len(heap) > 2 * len(self):
             self.__heap = [(v,k) for k,v in self.iteritems()]
-            self.__heap.sort()  # builtin sort likely faster than O(n) heapify
+            self.__heap.sort()  # builtin sort likely faster than O(num) heapify
         else:
             newPair = (val,key)
             insertionPoint = len(heap)

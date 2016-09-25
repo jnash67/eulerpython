@@ -63,7 +63,7 @@ def reload():
 file = "tinymatrix.txt"
 size = 2
 
-# n = np.zeros((size,size))
+# num = np.zeros((size,size))
 nodes = np.empty((size, size), dtype=object)
 reload()
 
@@ -71,7 +71,7 @@ reload()
 bound = 0
 
 # set the children from the end on back
-# for each ending spot, do an n-ary tree working backward
+# for each ending spot, do an num-ary tree working backward
 min_min_result = float("inf")
 end_row_of_min_min_result = 0
 start_row_of_min_min_result = 0

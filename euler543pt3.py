@@ -27,7 +27,7 @@ f44 = fibs[-1]
 maxval = f44
 globalmax = maxval
 
-# the resulting matrix is lower triangular since P(n,k)=0 for k>=n
+# the resulting matrix is lower triangular since P(num,k)=0 for k>=num
 results = np.empty(maxval+1, dtype=object)
 # results = ba.BitArray2D(rows=maxval, columns=maxval//2)
 

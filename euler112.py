@@ -17,13 +17,13 @@ def is_decreasing(n):
             return False
     return True
 
-n = 21780
-count_bouncy = int(.9 * 21780)
+n = 1
+count_bouncy = 0
 while True:
     if not is_increasing(n) and not is_decreasing(n):
         count_bouncy += 1
     if count_bouncy / n == (count_bouncy * 100 // n) / 100:
-        print("n:{} num_bouncy:{} %:{} mod:{}".format(n, count_bouncy, count_bouncy * 100 // n,
+        print("num:{} num_bouncy:{} %:{} mod:{}".format(n, count_bouncy, count_bouncy * 100 // n,
                                                       count_bouncy * 100 % n))
         if (count_bouncy * 100 // n) == 99:
             break

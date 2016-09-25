@@ -8,11 +8,11 @@ mobius_dict = collections.defaultdict(int)
 
 # problems 108, 110 and 379 involved A018892 which was where x<=y, GCD(x,y)=1
 # Here we want x<y, GCD(x,y) = 1.  This is A063647.
-# Where A018892 was (tau(n^2)+1)/2, this is (tau(n^2)-1)/2
+# Where A018892 was (tau(num^2)+1)/2, this is (tau(num^2)-1)/2
 
 def A063647(n):
     return eulerutils.numtheory.A018892(n)-1
-    #return (eulerutils.primes.tau(int(n * n)) - 1) // 2
+    #return (eulerutils.primes.tau(int(num * num)) - 1) // 2
 
 def S(nval, x1val, x2val):
     lval = 0
@@ -22,14 +22,14 @@ def S(nval, x1val, x2val):
 
 # http://oeis.org/A061503
 # algorithm from: https://math.stackexchange.com/questions/133630/divisor-summatory-function-for-squares
-# There's a bug here.  It's off by 1 for n = 10^6 (i.e. 37429394 instead of 37429395) and
-# n = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
+# There's a bug here.  It's off by 1 for num = 10^6 (i.e. 37429394 instead of 37429395) and
+# num = 10^12 but not many other values including 2*10^6. I suspect it's some rounding error for some large numbers.
 def fast_sum_of_sigma_0s_for_nsquared(nval):
     sqrtn = math.floor(math.sqrt(nval))
     lval = 0
     for a in range(1, sqrtn + 1):
         if a % 100000 == 0:
-            print("On n {}".format(a))
+            print("On num {}".format(a))
         if a in mobius_dict:
             mob = mobius_dict[a]
         else:
@@ -42,7 +42,7 @@ def fast_sum_of_sigma_0s_for_nsquared(nval):
 
 
 # http://oeis.org/A061201
-# This is the sum of tau_3(n) aka d_3(n) which is A007425
+# This is the sum of tau_3(num) aka d_3(num) which is A007425
 def fast_sum_of_tau_3(nval):
     lval = 0
     zmax = math.floor(math.pow(nval, 1/3))
@@ -59,21 +59,21 @@ for i in range(1, 101):
     print("{} {}".format(i, A063647(i)))
 
 start_time = time.time()
-print("A063647(n) {}: {}".format(15, A063647(15)))
-print("A063647(n) {}: {}".format(1000, A063647(1000)))
-print("A063647(n) {}: {}".format(int(math.pow(10,12)), A063647(math.pow(10,12))))
+print("A063647(num) {}: {}".format(15, A063647(15)))
+print("A063647(num) {}: {}".format(1000, A063647(1000)))
+print("A063647(num) {}: {}".format(int(math.pow(10,12)), A063647(math.pow(10,12))))
 finish_time = time.time()
 print("Running Time: %.3f seconds" % (finish_time - start_time))
 
 #
 # count = 0;
 # max_count_so_far =0
-# n = 0
+# num = 0
 # solutions_to_exceed = math.pow(10,12)
 # while count < solutions_to_exceed:
-#     n += 1
-#     count = A063647(n)
+#     num += 1
+#     count = A063647(num)
 #     if count > max_count_so_far:
 #         max_count_so_far = count
-#         print("{} {}".format(n, count))
-# print("{} {}".format(n, count))
+#         print("{} {}".format(num, count))
+# print("{} {}".format(num, count))

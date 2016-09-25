@@ -2,12 +2,12 @@ import eulerutils as eu
 
 # Only run this version in Debug mode.  It keeps hanging my system.
 
-# 1/x + 1/y = 1/n ==> xy /(y+x) = n ==> nx + ny = xy
-# nx and ny will always have gcd n
-# for any n, x = 2*n and y = 2*n is always a solution.  This is the solution where x is largest and y is smallest.
-# for any n, x = n+1, y = n*x = n*(n+1) is always a solution.  This is the solution where x is smallest and y is largest.
-# n*(n+1) + n*n*(n+1) = (n+n^2)*(n+1) = n*(n^2 + 1) * (n+1)
-# max possible solutions is 2*n - n+1, one for each possible x
+# 1/x + 1/y = 1/num ==> xy /(y+x) = num ==> nx + ny = xy
+# nx and ny will always have gcd num
+# for any num, x = 2*num and y = 2*num is always a solution.  This is the solution where x is largest and y is smallest.
+# for any num, x = num+1, y = num*x = num*(num+1) is always a solution.  This is the solution where x is smallest and y is largest.
+# num*(num+1) + num*num*(num+1) = (num+num^2)*(num+1) = num*(num^2 + 1) * (num+1)
+# max possible solutions is 2*num - num+1, one for each possible x
 
 # gcd(x,y) = x or some prime factor of x, given x is the smaller one
 
@@ -37,7 +37,7 @@ for n in test:
                     count+=1
                     sol_set.add((x,y))
                     x_set.add(x)
-                    #print("prime factors of n {}".format(pfactors))
+                    #print("prime factors of num {}".format(pfactors))
                     print("({},{}) ".format(x, y), end ="", flush=True)
             if xy > nx_plus_ny:
                 break
