@@ -3,7 +3,7 @@ def is_increasing(n):
     for i in range(0, len(str_n) - 1):
         d1 = int(str_n[i])
         d2 = int(str_n[i + 1])
-        if d2 > d1:
+        if d2 < d1:
             return False
     return True
 
@@ -13,7 +13,7 @@ def is_decreasing(n):
     for i in range(0, len(str_n) - 1):
         d1 = int(str_n[i])
         d2 = int(str_n[i + 1])
-        if d2 < d1:
+        if d2 > d1:
             return False
     return True
 
